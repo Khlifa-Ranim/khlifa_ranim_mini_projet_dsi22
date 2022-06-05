@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,11 +10,18 @@ import java.util.ResourceBundle;
 import application.connexion.connexion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class VendeurController implements Initializable {
 	
@@ -30,6 +38,9 @@ public class VendeurController implements Initializable {
 
     @FXML
     private TableColumn<Vendeur,Double> Pourcentage_col;
+    
+    @FXML
+    private Button Retourner;
 
 
 	@Override
@@ -37,6 +48,22 @@ public class VendeurController implements Initializable {
 		showVendeur();
 		
 	}
+	
+	  @FXML
+	  public void RtournerAcceuil(ActionEvent event) throws IOException {
+	        try {
+	        	Parent root;
+	            root = FXMLLoader.load(getClass().getResource("gestion_salarie.fxml"));
+	            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+	            Scene scene = new Scene(root);
+	            stage.setScene(scene);
+	            stage.show();
+	        } catch (Exception e) {
+	            System.out.println(e.fillInStackTrace());
+	        }
+	    }
+	  
+	
 	public ObservableList<Vendeur> getVendeurList() {
 		ObservableList<Vendeur> VendeurList = FXCollections.observableArrayList(); // Retourner la liste des employee
 

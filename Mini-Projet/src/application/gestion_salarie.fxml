@@ -16,7 +16,7 @@
          <children>
             <Pane layoutX="28.0" layoutY="37.0" prefHeight="679.0" prefWidth="377.0" style="-fx-background-color: peachpuff;">
                <children>
-                  <Text layoutX="43.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter  Un Salarie" wrappingWidth="329.13671875">
+                  <Text layoutX="60.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter  Un Salarie" wrappingWidth="257.13671875">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -54,12 +54,6 @@
                   <Label layoutX="16.0" layoutY="150.0" prefHeight="25.0" prefWidth="83.0" text="Matricule">
                      <font>
                         <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <TextArea fx:id="chercher" layoutX="216.0" layoutY="83.0" prefHeight="36.0" prefWidth="106.0" />
-                  <Label layoutY="90.0" prefHeight="25.0" prefWidth="208.0" text="Rechercher Matricule :">
-                     <font>
-                        <Font name="Arial Black" size="16.0" />
                      </font>
                   </Label>
                   <TextArea fx:id="email" layoutX="128.0" layoutY="252.0" prefHeight="37.0" prefWidth="194.0" />

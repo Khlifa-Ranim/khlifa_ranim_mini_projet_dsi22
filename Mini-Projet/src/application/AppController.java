@@ -89,7 +89,7 @@ public class AppController implements Initializable {
 	void handelButtonAction(ActionEvent event) {
 
 		if (event.getSource() == add_btn) {
-			insertSalarie();
+			createSalarie();
 		} else if (event.getSource() == edite_btn) {
 			ModifierSalarie();
 		} else if (event.getSource() == delete_btn) {
@@ -185,7 +185,7 @@ public class AppController implements Initializable {
 
 	}
 
-	public void insertSalarie() {
+	/*public void insertSalarie() {
 		try {
 			String SQL = "Insert into salarie values(" + matricule.getText() + ",'" + nom.getText() + "','"
 					+ email.getText() + "'," + salaire.getText() + "," + date_embauche.getText() + ",'"
@@ -200,7 +200,7 @@ public class AppController implements Initializable {
 			System.out.println("Error" + ex);
 		}
 	}
-
+*/
 	public void ModifierSalarie() {
 		try {
 			String SQL = "update salarie set nom='" + nom.getText() + "',email='" + email.getText() + "',salaire="
@@ -208,7 +208,6 @@ public class AppController implements Initializable {
 					+ "' where matricule=" + matricule.getText();
 			Statement stmt = connexion.getConx().createStatement();
 			if (stmt.executeUpdate(SQL) == 1)
-				showSalarie();
 			showSalarie();
 		} catch (SQLException ex) {
 			System.out.println(ex);
@@ -226,53 +225,54 @@ public class AppController implements Initializable {
 		}
 	}
 
-/*	public void createSalarie() {
-			try {
-				Statement stmt = connexion.getConx().createStatement();
+	public void createSalarie() {
+		try {
+			Statement stmt = connexion.getConx().createStatement();
 
-				if (Integer.parseInt(date_embauche.getText()) >= 2005) {
-					salaire.setText("400");
-				} else {
-					salaire.setText("280");
-
-				}
-
-
-				if(categorie.getText().equals("Employee") ){
-					String SqlSalaire = "Insert into salarie values(" + matricule.getText() + ",'" + nom.getText() + "','"
-							+ email.getText() + "'," + salaire.getText() + "," + date_embauche.getText() + ",'"
-							+ categorie.getText() + "')";
-					if (stmt.executeUpdate(SqlSalaire) == 1) {
-						System.out.println("Insertion a Salarie  a étè effectuer !");
-						showSalarie();
-					}
-					String reqEmployee = "Insert into Employee values (" + matricule.getText() + "," + Hssupp_Vente.getText()
-							+ "," + PHSupp_Pourcentage.getText() + ");";
-					if (stmt.executeUpdate(reqEmployee) == 1) {
-						System.out.println("Insertion a Employee  a étè effectuer !");
-					}
-				}
-				if(categorie.getText().equals("Vendeur")) {
-					String reqSalarie = "Insert into salarie values(" + matricule.getText() + ",'" + nom.getText()
-							+ "','" + email.getText() + "'," + date_embauche.getText() + ","
-							+ (Double.parseDouble(salaire.getText())
-									+ Double.parseDouble(Hssupp_Vente.getText()) * Double.parseDouble(PHSupp_Pourcentage.getText()))
-							+  ")";
-					if (stmt.executeUpdate(reqSalarie) == 1) {
-						System.out.println("Insertion a Salarie  a étè effectuer !");
-						showSalarie();
-					}
-
-					String reqVendeur = "Insert into Vendeur values (" + matricule.getText() + "," + Hssupp_Vente.getText()
-							+ "," + PHSupp_Pourcentage.getText() + ");";
-					if (stmt.executeUpdate(reqVendeur) == 1) {
-						System.out.println("Insertion a Vendeur  a étè effectuer !");
-					}
-				}
-
-			} catch (SQLException ex) {
-				System.out.println("Erreur SQL " + ex);
+			if (Integer.parseInt(date_embauche.getText()) >= 2005) {
+				salaire.setText("400");
+			} else {
+				salaire.setText("280");
 
 			}
-		}*/
+
+			if (categorie.getText().equals("employee")) {
+				String SqlSalaire = "Insert into salarie values(" + matricule.getText() + ",'" + nom.getText() + "','"
+						+ email.getText() + "'," + salaire.getText() + "," + date_embauche.getText() + ",'"
+						+ categorie.getText() + "')";
+				System.out.println(SqlSalaire);
+				if (stmt.executeUpdate(SqlSalaire) == 1) {
+					System.out.println("Insertion a Salarie  a étè effectuer !");
+					showSalarie();
+				}
+				String reqEmployee = "Insert into employee values (" + matricule.getText() + ","
+						+ Hssupp_Vente.getText() + "," + PHSupp_Pourcentage.getText() + ");";
+				
+				System.out.println(stmt.executeUpdate(reqEmployee));
+					System.out.println("Insertion a Employee  a étè effectuer !");
+				
+			}
+			if (categorie.getText().equals("vendeur")) {
+				String reqSalarie = "Insert into salarie values(" + matricule.getText() + ",'" + nom.getText() + "','"
+						+ email.getText() + "'," + salaire.getText() + "," + date_embauche.getText() + ",'"
+						+ categorie.getText() + "')";
+				System.out.println(reqSalarie);
+				if (stmt.executeUpdate(reqSalarie) == 1) {
+					System.out.println("Insertion a Salarie  a étè effectuer !");
+					showSalarie();
+				}
+
+				String reqVendeur = "Insert into vendeur values (" + matricule.getText() + "," + Hssupp_Vente.getText()
+						+ "," + PHSupp_Pourcentage.getText() + ");";
+				System.out.println(matricule.getText());
+				System.out.println(stmt.executeUpdate(reqVendeur));
+					System.out.println("Insertion a Vendeur  a étè effectuer !");
+				
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("Erreur SQL " + ex);
+
+		}
+	}
 }
